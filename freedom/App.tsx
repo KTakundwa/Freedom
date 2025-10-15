@@ -8,6 +8,7 @@ import {
   Button,
   TouchableOpacity,
 } from "react-native";
+import { withoutANSIColorStyles } from "react-native/types_generated/Libraries/LogBox/Data/parseLogBoxLog";
 
 // Row component for each user
 const UserItem = ({
@@ -31,11 +32,11 @@ const UserItem = ({
 export default function App() {
   // Array of users stored in state
   const [users, setUsers] = useState([
-    { id: "1", name: "Siya", age: 25, favouritecolour: "Red" },
-    { id: "2", name: "Caryn", age: 30, favouritecolour: "Blue" },
-    { id: "3", name: "Jaco", age: 22, favouritecolour: "Green" },
-    { id: "4", name: "Mihle", age: 28, favouritecolour: "Yellow" },
-    { id: "5", name: "Koosie", age: 12, favouritecolour: "Purple" },
+    { id: "1", name: "Siya", age: 25},
+    { id: "2", name: "Caryn", age: 30},
+    { id: "3", name: "Jaco", age: 22 },
+    { id: "4", name: "Mihle", age: 28},
+    { id: "5", name: "Koosie", age: 12},
   ]);
 
   // State for input fields
@@ -65,16 +66,18 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>👋 My Dynamic FlatList🦋</Text>
+      <Text style={styles.title}>We UP Here!🦋</Text>
 
       {/* Input fields */}
       <View style={styles.inputContainer}>
+        <Text>Name:</Text>
         <TextInput
           style={styles.input}
           placeholder="Enter name"
           value={newName}
           onChangeText={setNewName}
         />
+        <Text>Age:</Text>
         <TextInput
           style={styles.input}
           placeholder="Enter age"
@@ -82,13 +85,18 @@ export default function App() {
           onChangeText={setNewAge}
           keyboardType="numeric"
         />
+        <Text>Favourite Color:</Text>
         <TextInput
           style={styles.input}
           placeholder="Enter favourite colour"
           value={newColour}
           onChangeText={setNewColour}
         />
-        <Button title="Add User" onPress={addUser} />
+        <View style={styles.buttonColor}>
+        <Button title="Add User"  onPress={addUser}  />
+          <Text style= {styles.btnText}>addUser</Text>
+        
+      </View>
       </View>
 
       {/* FlatList */}
@@ -111,7 +119,7 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: "lightblue",
     paddingTop: 50,
     paddingHorizontal: 20,
   },
@@ -131,10 +139,12 @@ const styles = StyleSheet.create({
     borderRadius: 5,
   },
   item: {
-    backgroundColor: "#f0f0f0",
+    backgroundColor: "green",
     padding: 15,
     marginVertical: 8,
     borderRadius: 8,
+    borderWidth:8, 
+    borderColor: "pink",
   },
   name: {
     fontSize: 18,
@@ -156,8 +166,14 @@ const styles = StyleSheet.create({
     alignItems: "center"
   }, 
   btnText:{
-    color: "white",
+    color: "pink",
     fontWeight: "bold",
   },
+  buttonColor: {
+    backgroundColor: "white",
+   
+  }
+
+
 });
 
